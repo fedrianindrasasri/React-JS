@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+
 import BlogPost from '../BlogPost/BlogPost';
-// import YoutubeComp from '../../component/YoutubeComponent/YoutubeCom';
 import LifeCycleComp from '../LIfeCycleComp/LIfeCycleComp';
-// import Product from '../Product/Product';
-// 
+import Product from '../Product/Product';
+
+import './Home.css';
+
 class Home extends Component {
     state = {
         showComponent: true
@@ -16,30 +19,23 @@ class Home extends Component {
         //     })
         // }, 15000)
     }
+
+
     render() {
         return (
-            <div>
-                {/* <p>Youtube Component</p>
-                <hr />
-                <YoutubeComp time="1.02" title="Tutorial React JS 1" desc="Upload 14 Hari yang lalu" />
-                <YoutubeComp time="3.02" title="Tutorial React JS 2" desc="Upload 14 Hari yang lalu" />
-                <YoutubeComp time="5.02" title="Tutorial React JS 3" desc="Upload 14 Hari yang lalu" />
-                <YoutubeComp /> */}
+            <BrowserRouter>
+                <div className='navigation'>
+                    <Link to="/">Home</Link>
+                    <Link to="/product">Product</Link>
+                    <Link to="/lifecycle">Life Cycle</Link>
 
-                {/* <p>Counter</p>
-                <hr />
-                <Product /> */}
-
-                {/* <p>Life Cycle Component</p>
-                <hr />
-
-                {this.state.showComponent ? <LifeCycleComp /> : null} */}
-
-                <p>Blog Post</p>
-                <hr />
-                <BlogPost />
-
-            </div>
+                </div>
+                <Routes>
+                    <Route path="/" exact element={<BlogPost />} />
+                    <Route path="/product" element={<Product />} />
+                    <Route path="/lifecycle" element={<LifeCycleComp />} />
+                </Routes>
+            </BrowserRouter >
         )
     }
 }
